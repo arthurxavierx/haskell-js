@@ -1,4 +1,4 @@
-# F-Array
+# f-array
 
   Some functional Array helpers for node.js
 
