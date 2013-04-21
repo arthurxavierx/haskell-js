@@ -13,6 +13,8 @@ describe 'FArray', ->
   #
   it 'should return an array of unique elements', ->
     [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].unique().should.eql [1, 2, 4, 5, 6, 7]
+    Array.unique(["and", "fish", "be", "fish"]).should.eql ["and", "fish", "be"]
+    unique("array").should.eql ['a', 'r', 'y']
     [].unique().should.eql []
 
   #
@@ -28,7 +30,8 @@ describe 'FArray', ->
   #
   it 'should verify if an array is empty', ->
     [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].empty().should.equal false
-    [].empty().should.equal true
+    Array.empty([]).should.equal true
+    empty("").should.equal true
 
   #
   it 'should remove elements from the array by index or function test', ->

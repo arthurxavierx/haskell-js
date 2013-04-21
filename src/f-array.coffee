@@ -1,68 +1,76 @@
 # src/f-array.coffee
 
-FArray = Array
-
 #
 # Zip multiple arrays into an array of arrays
 #
-if !FArray.zip
-  global.zip = FArray.zip = ->
+if !Array.prototype.zip
+  global.zip = Array.zip = ->
     lengthArray = (array.length for array in arguments)
     length = Math.min(lengthArray...)
     for i in [0...length]
       array[i] for array in arguments
-#
-if !FArray.prototype.zip
-  FArray.prototype.zip = ->
-    FArray.zip @, arguments...
+  #
+  Array.prototype.zip = ->
+    Array.zip @, arguments...
 
 
 #
-# Returns an array of unique elements in the array
+# Return an array of unique elements in the array
 #
-if !FArray.prototype.unique
-  FArray.prototype.unique = ->
+if !Array.prototype.unique
+  global.unique = Array.unique = (array) ->
     unique = new Object
-    unique[@[i]] = @[i] for i in [0...@length]
+    unique[array[i]] = array[i] for i in [0...array.length]
     element for i, element of unique
+  #
+  Array.prototype.unique = ->
+    Array.unique @
 
 #
-# Creates a dictionary Object from an Array of objects
+# Create a dictionary Object from an Array of objects
 # @param key key to index the dictionary
 #
-if !FArray.prototype.dictionary
-  FArray.prototype.dictionary = (key) ->
-    @reduce ((d, o) ->
+if !Array.prototype.dictionary
+  global.dictionary = Array.dictionary = (array, key) ->
+    array.reduce ((d, o) ->
       d[o[key]] = o if o[key]?
       d
     ), new Object
+  #
+  Array.prototype.dictionary = (key) ->
+    Array.dictionary @, key
 
 #
-# Verifies if an array is empty
+# Verify if an array is empty
 #
-if !FArray.prototype.empty
-  FArray.prototype.empty = ->
-    @length < 1
+if !Array.prototype.empty
+  global.empty = Array.empty = (array) ->
+    array.length < 1
+  #
+  Array.prototype.empty = ->
+    Array.empty @
 
 #
 # Remove items from the array
 # @param index/callback index of the element to remove or 
 #function to test for elements to remove
 #
-if !FArray.prototype.remove
-  FArray.prototype.remove = (index) ->
+if !Array.prototype.remove
+  global.remove = Array.remove = (array, index) ->
     if typeof index == "function"
       callback = index
       i = 0
-      while i < @length
-        if callback(this[i], i, this)
-          this.splice i, 1
+      while i < array.length
+        if callback(array[i], i, array)
+          array.splice i, 1
           i--
         i++
     else
-      this.splice index, 1
-
-    return this;
+      array.splice index, 1
+    return array;
+  #
+  Array.prototype.remove = (index) ->
+    Array.remove @, index
 
 #
-module.exports = FArray
+module.exports = Array

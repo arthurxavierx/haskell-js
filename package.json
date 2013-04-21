@@ -1,6 +1,6 @@
 {
   "name": "f-array",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
   "description": "Some functional Array helpers for node.js",
 
