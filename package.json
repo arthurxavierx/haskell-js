@@ -1,22 +1,18 @@
 {
   "name": "f-array",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
   "description": "Some functional Array helpers for node.js",
-
   "main": "./lib/f-array",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/arthur-xavier/f-array.git"
   },
-
   "keywords": [
     "array",
     "functional",
     "helpers"
   ],
-
   "devDependencies": {
     "coffee-script": "~1.6.2",
     "uglify-js": "~2.2.5",
