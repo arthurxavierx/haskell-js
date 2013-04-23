@@ -1,11 +1,64 @@
-# f-array
+# haskell
 
-  Some functional Array helpers for node.js
+> Lambda functions and functional programming for javascript
 
 ## Installation
-    $ npm install f-array
+    $ npm install haskell
 
-## .zip(arrays...)
+## Lambda λ
+  Make functions out of lambda strings
+
+    f = require('haskell');
+
+    add1 = f('+1');
+    add1(1); // => 2
+
+    f('x*x')(5); // => 25
+
+    f('a b -> a+b')(1, 2); // => 3
+
+    f('+2')(f('+1')(1)); // => 4
+
+    greater_than_0 = f('>0');
+    greater_than_0(1); // => true
+    greater_than_0(-1); // => false
+
+    array = [-1, 0, 1, 2];
+    array.map('+1'); // => [0, 1, 2, 3]
+    array.filter('>0'); // => [1, 2]
+    array.map('+1').filter('>0'); => [1, 2, 3]
+    array.every('>0'); // => false
+    array.some('>0'); // => true
+
+    f.fold([1, 2, 3, 4], 'a+b'); // => 10
+
+    // reverse array
+    [1, 2, 3, 4].foldr('a b -> a.push(b)'); // => [4, 3, 2, 1]
+
+    [1, 2, 3].map('+1').fold('a+b'); // => 9
+
+### .curry(fn, args...)
+  Curry a function with arguments. Returns a function with the arguments applied.
+
+    add3 = f('a + b + c')
+    add3(1, 2, 3);
+    // => 6
+    
+    add3.curry(1); // f.curry(add3, 1);
+    add3(1, 2);
+    // => 4
+
+    f.curry(add3, 2);
+    add3(3);
+    // => 6
+
+    a = [-1, 0, 1, 2];
+    a.map(f('a+b').curry(2)); // f.map(a, f.curry('a+b', 2))
+    // => [1, 2, 3, 4]
+
+## Array functions
+
+### .zip([array,] arrays...)
   Zip multiple arrays into an array of arrays
 
     [0, 1, 2, 3].zip([0, -1, -2, -3])
@@ -17,7 +70,7 @@
     zip("and", "fish", "be")
     // => [['a', 'f', 'b'], ['n', 'i', 'e']]
 
-## .unique()
+### .unique([array])
   Return an array of unique/distinct elements of an array
 
     [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].unique()
@@ -29,7 +82,7 @@
     unique("array")
     // => ['a', 'r', 'y']
 
-## .dictionary(key)
+### .dictionary([array,] key)
   Create a dictionary Object from an Array of objects
 
     [
@@ -42,19 +95,34 @@
     //   'bar': { name: 'bar', value: 'baz' }
     // }
 
-## .empty()
+### .empty([array])
   Verify if an array is empty
 
-    [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].empty()
-    // => false
+    [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].empty(); // => false
 
-    Array.empty([])
-    // => true
+    Array.empty([]); // => true
 
-    empty("")
-    // => true
+    empty(""); // => true
 
-## .remove(index/callback)
+### .single([array])
+  Verify if an array is a single tuple
+
+    [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].single(); // => false
+
+    Array.single([]); // => false
+
+    f.single([1]); // => true
+
+### .top([array])
+  Return the top element of an array
+
+    [1, 1, 2, 4, 5, 5, 5, 6, 6, 7].top(); // => 6
+
+    Array.top([]); // => undefined
+
+    top("Haskell"); // => "l"
+
+### .remove([array,] index/callback)
   Remove items from an array by index or function test
   _(affects original array)_
 

@@ -1,17 +1,21 @@
 {
-  "name": "f-array",
-  "version": "0.2.2",
+  "name": "haskell",
+  "version": "0.3.0",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
-  "description": "Some functional Array helpers for node.js",
-  "main": "./lib/f-array",
+  "description": "Lambda functions and functional programming for javascript",
+  "main": "./lib/haskell",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arthur-xavier/f-array.git"
+    "url": "https://github.com/arthur-xavier/haskell-js.git"
   },
   "keywords": [
-    "array",
+    "λ",
+    "lambda",
     "functional",
-    "helpers"
+    "curry",
+    "haskell",
+    "coffee",
+    "array"
   ],
   "devDependencies": {
     "coffee-script": "~1.6.2",

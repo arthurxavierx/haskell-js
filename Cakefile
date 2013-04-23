@@ -16,7 +16,7 @@ build = (options = {}) ->
   coffee.on 'exit', (status) -> 
     console.log "done."
 
-  exec './node_modules/uglify-js/bin/uglifyjs ./lib/f-array.js -o ./lib/f-array.js' if options.minify
+  exec './node_modules/uglify-js/bin/uglifyjs ./lib/haskell.js -o ./lib/f-array.js' if options.minify
 
 test = ->
   build()
@@ -24,7 +24,7 @@ test = ->
     '-R', 'spec'
     '--colors'
     '--require', 'coffee-script'
-    './test/f-array.test.coffee'
+    './test/haskell.test.coffee'
   ]
   mocha.stdout.pipe process.stdout
   mocha.stderr.pipe process.stderr
