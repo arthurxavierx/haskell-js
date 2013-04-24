@@ -44,12 +44,9 @@ f.curry = f.c = (fn, args...) ->
   (args2...) -> fn.toFunction()(args..., args2...)
 
 
-# includes haskell-js modules
-include = (m) -> f[k] = v for k, v of require("./haskell.#{m}")
-
-# include array module
-include 'array'
-
-include 'sequence'
-
-#require './haskell.array'
+#
+# includes
+#
+# @include "array"
+# @include "sequence"
+#

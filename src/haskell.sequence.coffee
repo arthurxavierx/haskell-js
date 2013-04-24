@@ -1,7 +1,5 @@
 # src/haskell.sequence.coffee
 
-f = f or {}
-
 #
 # 
 #
@@ -50,5 +48,3 @@ f.seq = f.sequence = (sequence) ->
   new Sequence(sequence)
 Array.prototype.sequence = ->
   new Sequence @
-
-module.exports = f

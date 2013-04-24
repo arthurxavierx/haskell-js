@@ -1,6 +1,6 @@
 {
   "name": "haskell",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
   "description": "Lambda functions and functional programming for javascript",
   "main": "./lib/haskell",

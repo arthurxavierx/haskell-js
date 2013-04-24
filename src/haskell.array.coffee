@@ -1,7 +1,5 @@
 # src/haskell.array.coffee
 
-f = f or {}
-
 # -begin
 # Redefine Array methods to support Lambda
 #
@@ -132,5 +130,3 @@ if !Array.prototype.remove
   #
   Array.prototype.remove = (index) ->
     Array.remove @, index
-
-module.exports = f
