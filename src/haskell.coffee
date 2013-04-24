@@ -1,11 +1,5 @@
 # src/haskell.coffee
 
-HaskellError = ->
-  Error.apply @, arguments
-HaskellError.prototype = new Error
-HaskellError.prototype.constructor = HaskellError
-HaskellError.prototype.name = 'HaskellError'
-
 #
 # Make functions out of lambda strings
 #
@@ -44,7 +38,6 @@ String.prototype.lambda = String.prototype.toFunction = ->
 
 #
 # Returns a function with arguments applied
-#
 Function.prototype.c = Function.prototype.curry = (args...) ->
   f.curry this.toFunction(), args...
 f.curry = f.c = (fn, args...) ->
@@ -56,3 +49,7 @@ include = (m) -> f[k] = v for k, v of require("./haskell.#{m}")
 
 # include array module
 include 'array'
+
+include 'sequence'
+
+#require './haskell.array'

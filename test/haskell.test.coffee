@@ -60,7 +60,7 @@ describe 'haskell', ->
     add3 = f.curry add3, 1, 2
     add3(3).should.equal 6
 
-
+  #
   describe 'haskell.Array', ->
 
     #
@@ -109,3 +109,38 @@ describe 'haskell', ->
       [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].remove(2).should.eql [1, 1, 4, 5, 5, 5, 6, 7, 7]
       [1, 1, 2, 4, 5, 5, 5, 6, 7, 7].remove((e) -> e == 5).should.eql [1, 1, 2, 4, 6, 7, 7]
       f.remove([1], 0).should.eql []
+
+  #
+  describe 'haskell.Sequence', ->
+
+    #
+    it 'should make sequences from arrays', ->
+      s = new Sequence [-1, 1]
+      s.sequence.should.eql [-1, 1]
+      s.get(0).should.eql -1
+      s.get(0, 1).should.eql [-1, 1]
+
+      [1, 2, 3, 4].sequence().get(0, 2).should.eql [1, 2, 3]
+
+    #
+    it 'should concatenate sequences', ->
+      s = new Sequence [1, 2, 3, 4]
+      s.set [-1, -2], 2
+      s.sequence.should.eql [1, 2, -1, -2]
+
+    #
+    it 'should make sequences out of lambdas and functions', ->
+      s = new Sequence 'x'
+      s.get(100000).should.eql 100000
+      s.get(0, 4).should.eql [0, 1, 2, 3, 4]
+
+    #
+    it 'should make inverse sequences', ->
+      new Sequence([1, 2, 3, 4]).inverse().get(0, 3).should.eql [1, 1/2, 1/3, 1/4]
+      new Sequence([1, 2, 3, 4]).inverse().get(0, 3).should.eql [1, 1/2, 1/3, 1/4]
+
+    #
+    it 'should make negative sequences', ->
+      new Sequence([1, 2, 3, 4]).negative().get(0, 3).should.eql [-1, -2, -3, -4]
+      new Sequence([1, 2, 3, 4]).negative().get(0, 3).should.eql [-1, -2, -3, -4]
+
